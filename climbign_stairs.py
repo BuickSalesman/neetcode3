@@ -1,10 +1,14 @@
 class Solution:
     def climbStairs(self, n: int) -> int:
-        one, two = 1, 1
+        target_step = n
+        step = 2
+        penultimate_step = 1
+        antepenultimate_step = 1
 
-        for i in range(n - 1):
-            temp = one
-            one = one + two
-            two = temp
+        while step <= target_step:
+            step += 1
+            preantepenultimate_step = antepenultimate_step
+            antepenultimate_step = penultimate_step
+            penultimate_step = preantepenultimate_step + antepenultimate_step
 
-        return one
+        return penultimate_step

@@ -4,15 +4,18 @@ class Solution {
    * @return {number}
    */
   climbStairs(n) {
-    let one = 1;
-    let two = 1;
+    let step = 2;
+    let waysToReachPenultimateStep = 1;
+    let waysToReachAntepenultimateStep = 1;
+    let targetStep = n;
 
-    for (let i = 0; i < n - 1; i++) {
-      let temp = one;
-      one = one + two;
-      two = temp;
+    while (step <= targetStep) {
+      step++;
+      let waysToReachPreantepenultimateStep = waysToReachAntepenultimateStep;
+      waysToReachAntepenultimateStep = waysToReachPenultimateStep;
+      waysToReachPenultimateStep = waysToReachAntepenultimateStep + waysToReachPreantepenultimateStep;
     }
 
-    return one;
+    return waysToReachPenultimateStep;
   }
 }
